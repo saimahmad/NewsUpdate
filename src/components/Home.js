@@ -45,18 +45,18 @@ const { TabPane } = Tabs;
 //   }
 // }
 
-function Home ({ sourceList, fetchSources }) {
+function Home (props) {
   useEffect(() => {
-    fetchSources()
+    props.fetchSources()
   }, [])
-  return sourceList.loading ? (
+  return props.sourceList.loading ? (
     <h2>Loading</h2>
-  ) : sourceList.error ? (
-    <h2>{sourceList.error}</h2>
+  ) : props.sourceList.error ? (
+    <h2>{props.sourceList.error}</h2>
   ) : (
          <div>
         <Tabs>
-          {sourceList.sources.map((data) => (
+          {props.sourceList.sources.map((data) => (
             <TabPane tab={data.name} key={data.id}>
               <NewsList sourceId={data.id}></NewsList>
             </TabPane>
